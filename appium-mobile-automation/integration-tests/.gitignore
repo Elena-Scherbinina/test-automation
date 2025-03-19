@@ -35,3 +35,4 @@ test-output/
 
 # System files
 Thumbs.db
+.idea/
