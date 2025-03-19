@@ -1,0 +1,37 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# macOS files
+.DS_Store
+_mac/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Gradle files
+.gradle/
+build/
+out/
+
+# Maven files
+target/
+*.jar
+*.war
+*.ear
+dependency-jars/
+
+# Logs
+*.log
+logs/
+
+# App files
+App/*.ipa
+App/*.apk
+
+# Test output
+test-output/
+
+# System files
+Thumbs.db
