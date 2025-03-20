@@ -15,6 +15,7 @@ import stepdefs.xConsts;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 /**
  * CommonComponentsPage class represents the common UI components of the TV app automation.
  * It provides locators and actions for various elements available on both
@@ -70,7 +71,9 @@ public class CommonComponentsPage extends BasePage {
     @AndroidFindBy(id = " android:id/navigationBarBackground")
     private MobileElement androidBack;
 
-    /** Location Service dialog **/
+    /**
+     * Location Service dialog
+     **/
     @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
     @iOSFindBy(accessibility = "Allow While Using App")
     private MobileElement permissionAllowButton; //enabled :true/false
@@ -79,16 +82,22 @@ public class CommonComponentsPage extends BasePage {
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
     private MobileElement allowLocationButton; //e  While Using app button
 
-    /** Track activity dialog **/
+    /**
+     * Track activity dialog
+     **/
     @iOSFindBy(accessibility = "Ask App not to Track")      //
     private MobileElement notTrackButton;
 
-    /** Allow access to location  dialog */
+    /**
+     * Allow access to location  dialog
+     */
     @AndroidFindBy(id = "android:id/message")
     @iOSFindBy(accessibility = "alert_titleLabel")            // "Please allow access to your location" - label
     private MobileElement pleaseAllowAccessLocationMessage;
 
-    /** Allow access to location  dialog message*/
+    /**
+     * Allow access to location  dialog message
+     */
     @iOSFindBy(accessibility = "alert_messageLabel")
     private MobileElement PhoenixBtvNeedsToKnowMessage;
 
@@ -143,7 +152,7 @@ public class CommonComponentsPage extends BasePage {
     ArrayList<String> autoutoTestLineup = new ArrayList<String>();
     ArrayList<String> bayAreaLineup = new ArrayList<String>();
 
-    public CommonComponentsPage(AppiumDriver driver,  ArrayList<String> lineup) {
+    public CommonComponentsPage(AppiumDriver driver, ArrayList<String> lineup) {
         super(driver);
         this.setCurrentVideo();
 
@@ -156,15 +165,23 @@ public class CommonComponentsPage extends BasePage {
         }
     }
 
+    /**
+     * Initializes the current video viewer.
+     */
     public void setCurrentVideo() {
         viewer = new CurrentVideoPage(driver);
     }
 
+    /**
+     * Retrieves the current video viewer object.
+     */
     public CurrentVideoPage getCurrentViewer() {
         return viewer;
     }
 
-
+    /**
+     * Checks if the page is properly initialized by verifying the visibility of the menu element.
+     */
     public boolean isInitialized() {
         boolean visible = false;
         if (Utils.isAndroid()) {
@@ -287,7 +304,9 @@ public class CommonComponentsPage extends BasePage {
         return ret;
     }
 
-
+    /**
+     * Retrieves the channel names list for the specified lineup.
+     */
     public ArrayList<String> getChannelsNamesArrayForLineup(String lineup) {
         ArrayList<String> channelsList = new ArrayList<String>();
         if (Utils.isAndroid()) {
@@ -398,10 +417,16 @@ public class CommonComponentsPage extends BasePage {
         return el.isDisplayed();
     }
 
+    /**
+     * Simulates a tap anywhere on the app screen.
+     */
     public void tapScreen() {
         Utils.tapAppScreen();
     }
 
+    /**
+     * Simulates clicking the Play/Pause button in the video viewer.
+     */
     public void playPauseButtonClick() {
         viewer.PlayPauseVideoClick("Play/Pause");
     }
@@ -410,6 +435,9 @@ public class CommonComponentsPage extends BasePage {
         viewer.PlayPauseVideoClick("Play/Pause");
     }
 
+    /**
+     * Navigates to the next item (channel) by swiping right on the screen.
+     */
     public void goToNext() {
         MobileElement el = viewer.getChevronRight();
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -421,8 +449,8 @@ public class CommonComponentsPage extends BasePage {
     }
 
     /**
-     *  Method provides a way to handle button clicks and navigate to different
-     *  pages within the application.
+     * Method provides a way to handle button clicks and navigate to different
+     * pages within the application.
      */
     public BasePage buttonClick(String name) {
         BasePage bp = null;
@@ -488,7 +516,6 @@ public class CommonComponentsPage extends BasePage {
     }
 
     public boolean verifyLoadingVideoOverlayIsAbsent(int timeout) {
-        //  return Utils.isElementAbsent(this.getLoadingVideoOverlay(), timeout);
         String id = "";
         if (Utils.isAndroid()) {
             id = Utils.getId("loadingProgress_image");
@@ -510,7 +537,7 @@ public class CommonComponentsPage extends BasePage {
 
     public void acceptLocationService() throws Exception {
         if (Utils.isAndroid()) {
-              permissionAllowButton.click();
+            permissionAllowButton.click();
         } else {
             // On iOS location services alert isn't shown after permission is accepted.
             // Don't fail the test if it is not found
@@ -565,15 +592,23 @@ public class CommonComponentsPage extends BasePage {
         }
     }
 
+    /**
+     * Retrieves the text from the permission allow dialog.
+     */
     public String getAllowPermissionText() {
         return permissionAllowText.getText();
     }
 
-
+    /**
+     * Retrieves the message text requesting location access permission.
+     */
     public String getAllowLocationAccessText() {
         return pleaseAllowAccessLocationMessage.getText();
     }
 
+    /**
+     * Retrieves the iOS-specific message explaining why location access is needed.
+     */
     public String getAllowLocationAccessTextForIos() {     ///"PhoenixBTV needs to know where you are so we can provide you .."
         return PhoenixBtvNeedsToKnowMessage.getText();
     }
@@ -693,7 +728,7 @@ public class CommonComponentsPage extends BasePage {
     }
 
     /**
-     *  Method get y coordinate for Guide, Recordings or Community tab
+     * Method get y coordinate for Guide, Recordings or Community tab
      **/
     public int getYCoordinate(String tabValue) {
         int retValue = 0;
@@ -706,14 +741,23 @@ public class CommonComponentsPage extends BasePage {
         return retValue;
     }
 
+    /**
+     * Returns the stored Y-coordinate of the tab.
+     */
     public int getTabYCoordinate() {
         return tabY;
     }
 
+    /**
+     * Returns the stored Y-coordinate of the expanded tab.
+     */
     public int getExtendedTabYCoordinate() {
         return extendedTabY;
     }
 
+    /**
+     * Returns the height of the video viewer element.
+     */
     public int getViewerHeight() {
         return viewerElement.getSize().getHeight();
     }
@@ -722,7 +766,6 @@ public class CommonComponentsPage extends BasePage {
     /**
      * Finds and taps the center coordinates of the "grab_bar_up" or "grab_bar_down" button on iOS.
      */
-
     public void clickUpOrDownButtonForIos(MobileElement el) {
         int graby = el.getLocation().getY();
         int grabx = el.getLocation().getX();
