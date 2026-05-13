@@ -87,8 +87,7 @@ To execute tests on a cloud-based device farm (such as AWS Device Farm), run aws
 
 Note
 ========================
-This repository does not include the application under test, as it was a company-owned app (the company
-is now closed). Additionally, not all page objects are included, as this repository is intended to showcase 
+This repository does not include the application under test. Additionally, not all page objects are included, as this repository is intended to showcase 
 my automation logic and approach rather than serve as a fully functional test suite.
 
 
